@@ -8,7 +8,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp(title: 'Ung ShoppingMall',
       theme: ThemeData(primarySwatch: Colors.deepOrange),
       home: Home(),
     );
