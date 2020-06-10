@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:ungshoppingmall/models/product_model.dart';
+import 'package:ungshoppingmall/screens/show_detail.dart';
 
 class ShowListProduct extends StatefulWidget {
   @override
@@ -55,12 +56,15 @@ class _ShowListProductState extends State<ShowListProduct> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
-        Text(
-          productModels[index].name,
-          style: TextStyle(
-            fontSize: 24.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.brown,
+        Container(
+          width: MediaQuery.of(context).size.width * 0.5 - 35,
+          child: Text(
+            productModels[index].name,
+            style: TextStyle(
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.brown,
+            ),
           ),
         ),
       ],
@@ -100,11 +104,19 @@ class _ShowListProductState extends State<ShowListProduct> {
   }
 
   Widget showListView(int index) {
-    return Row(
-      children: <Widget>[
-        showImage(index),
-        showText(index),
-      ],
+    return GestureDetector(
+      onTap: () {
+        MaterialPageRoute route = MaterialPageRoute(
+          builder: (value) => ShowDetail(productModel: productModels[index],),
+        );
+        Navigator.of(context).push(route);
+      },
+      child: Row(
+        children: <Widget>[
+          showImage(index),
+          showText(index),
+        ],
+      ),
     );
   }
 
